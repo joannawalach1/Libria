@@ -3,10 +3,7 @@ package pl.com.coders.libria1.domain;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity(name = "BOOK")
@@ -16,6 +13,11 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name="category_id", nullable=false)
+    private Category category;
+
+    @Column(unique = true)
     private String title;
     private String author;
 
@@ -33,6 +35,14 @@ public class Book {
     }
 
     public Book() {
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Long getId() {

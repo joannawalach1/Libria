@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 public class BookView {
     private Long id;
+    private CategoryName categoryName;
+
     private String title;
     private String author;
     private int amount;
@@ -21,6 +23,14 @@ public class BookView {
     }
 
     public BookView() {
+    }
+
+    public CategoryName getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(CategoryName categoryName) {
+        this.categoryName = categoryName;
     }
 
     public Long getId() {

@@ -5,7 +5,15 @@ public class BookCreateRequest {
     private String title;
     private String author;
     private int amount;
+    private CategoryName categoryName;
 
+    public CategoryName getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(CategoryName categoryName) {
+        this.categoryName = categoryName;
+    }
 
     public String getTitle() {
         return title;
