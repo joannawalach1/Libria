@@ -11,6 +11,7 @@ import pl.com.coders.libria1.repository.BookRepository;
 import java.util.Optional;
 
 @Service
+//TODO add mockito TEST
 public class BookService {
 
     @Autowired
@@ -31,4 +32,24 @@ public class BookService {
 
         return bookMapper.toView(bookRepository.save(book));
     }
+
+    public void delete(Long id) {
+        bookRepository.deleteById(id);
+    }
+
+    public BookView update(Long id, BookCreateRequest bookUpdateRequest) {
+        Optional<Book> oldBookOptional = bookRepository.findById(id);
+
+        if (oldBookOptional.isPresent()) {
+            Book outdatedBook = oldBookOptional.get();
+            outdatedBook.setTitle(bookUpdateRequest.getTitle());
+            outdatedBook.setAuthor(bookUpdateRequest.getAuthor());
+            outdatedBook.setAmount(bookUpdateRequest.getAmount());
+            Book updatedBook = bookRepository.save(outdatedBook);
+            return bookMapper.toView(updatedBook);
+        } else {
+            throw new IllegalArgumentException("Book not exist with id" + id);
+        }
+    }
 }
+

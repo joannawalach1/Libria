@@ -6,6 +6,7 @@ import pl.com.coders.libria1.service.BookService;
 
 @RestController
 @RequestMapping("/book")
+//TODO add mock mvc tests
 public class BookController {
 
     @Autowired
@@ -20,4 +21,13 @@ public class BookController {
     public BookView create(@RequestBody BookCreateRequest bookCreateRequest) {
         return bookService.create(bookCreateRequest);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){ bookService.delete(id); }
+
+    @PutMapping("/{id}")
+    public BookView update(@PathVariable Long id, @RequestBody BookCreateRequest bookUpdateRequest){
+        return bookService.update(id, bookUpdateRequest);
+    }
 }
+
