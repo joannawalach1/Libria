@@ -51,9 +51,5 @@ public class BookService {
             throw new IllegalArgumentException("Book not exist with id" + id);
         }
     }
-
-    public boolean deleteById(long l) {
-        return true;
-    }
 }
 

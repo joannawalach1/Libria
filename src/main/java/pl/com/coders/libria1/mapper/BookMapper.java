@@ -22,7 +22,7 @@ public interface BookMapper {
 
     @Named("categoryNameToCategory")
     static Category categoryNameToCategory(CategoryName categoryName) {
-        return new Category(categoryName.getValue(), categoryName.name());
+        return new Category(categoryName.name());
     }
 
 
