@@ -7,7 +7,6 @@ public class BookCreateRequest {
     private int amount;
     private CategoryName categoryName;
 
-
     public BookCreateRequest(Long id,String title, String author, int amount,CategoryName categoryName){
         this.title = title;
         this.author = author;

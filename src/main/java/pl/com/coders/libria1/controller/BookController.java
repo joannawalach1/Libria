@@ -1,16 +1,17 @@
 package pl.com.coders.libria1.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.com.coders.libria1.service.BookService;
 
 @RestController
 @RequestMapping("/book")
-//TODO add mock mvc tests
 public class BookController {
 
-    @Autowired
-    private BookService bookService;
+    private final BookService bookService;
+
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @GetMapping("/{id}")
     public BookView get(@PathVariable Long id) {

@@ -11,7 +11,6 @@ import pl.com.coders.libria1.repository.BookRepository;
 import java.util.Optional;
 
 @Service
-//TODO add mockito TEST
 public class BookService {
 
     @Autowired
@@ -51,5 +50,7 @@ public class BookService {
             throw new IllegalArgumentException("Book not exist with id" + id);
         }
     }
+
+
 }
 
