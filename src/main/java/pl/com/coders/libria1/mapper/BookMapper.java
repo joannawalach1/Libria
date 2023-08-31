@@ -24,4 +24,8 @@ public interface BookMapper {
     static Category categoryNameToCategory(CategoryName categoryName) {
         return new Category(categoryName.getValue(), categoryName.name());
     }
+
+
+
+
 }

@@ -12,8 +12,8 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping
-    public BookView get(Long id) {
+    @GetMapping("/{id}")
+    public BookView get(@PathVariable Long id) {
         return bookService.get(id);
     }
 

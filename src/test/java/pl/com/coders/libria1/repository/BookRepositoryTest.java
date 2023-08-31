@@ -3,10 +3,7 @@ package pl.com.coders.libria1.repository;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import pl.com.coders.libria1.domain.Book;
 
 import java.util.List;
@@ -14,24 +11,22 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
-@DataJpaTest
-//TODO FIX failing tests
 class BookRepositoryTest {
 
     @Autowired
     private BookRepository bookRepository;
 
+
     @BeforeEach
     void setUp() {
-        bookRepository.save(new Book("Wiedzmin 1", "Sapkowwski", 10));
-        bookRepository.save(new Book("Otchłań", "Scales", 15));
-        bookRepository.save(new Book("Harry Potter", "Rowling", 5));
+        bookRepository.save(new Book(1L,"Wiedzmin 1", "Sapkowwski", 10));
+        bookRepository.save(new Book(2L,"Otchłań", "Scales", 15));
+        bookRepository.save(new Book(3L,"Harry Potter", "Rowling", 5));
     }
 
     @Test
     void save() {
-        Book book = bookRepository.save(new Book("Tkając Świt", "Kim", 10));
+        Book book = bookRepository.save(new Book(4L,"Tkając Świt", "Kim", 10));
         assertEquals(4, bookRepository.count());
         assertEquals("Tkając Świt", book.getTitle());
         assertEquals("Kim", book.getAuthor());
@@ -42,8 +37,8 @@ class BookRepositoryTest {
     @Test
     void saveALl() {
         bookRepository.saveAll(List.of(
-                new Book("Citadela", "Mosse", 3),
-                new Book("Shantaram", "Roberts", 5)));
+                new Book(5L,"Citadela", "Mosse", 3),
+                new Book(6L,"Shantaram", "Roberts", 5)));
         assertEquals(5, bookRepository.count());
     }
 
@@ -78,7 +73,7 @@ class BookRepositoryTest {
 
     @Test
     void count() {
-        bookRepository.save(new Book("Niebieski", "Gorge", 10));
+        bookRepository.save(new Book(7L,"Niebieski", "Gorge", 10));
         assertEquals(4, bookRepository.count());
     }
 
@@ -90,14 +85,14 @@ class BookRepositoryTest {
 
     @Test
     void deleteAll() {
-        Book book = bookRepository.save(new Book("Kwiaty Zielone", "Daniel", 10));
+        Book book = bookRepository.save(new Book(8L,"Kwiaty Zielone", "Daniel", 10));
         bookRepository.deleteAll();
         assertEquals(0, bookRepository.count());
     }
 
     @Test
     void update() {
-        Book book = bookRepository.save(new Book("Cud", "Nathan", 10));
+        Book book = bookRepository.save(new Book(9L,"Cud", "Nathan", 10));
         book.setTitle("Uważność");
         book.setAuthor("Norbert");
         book.setAmount(20);
@@ -109,12 +104,21 @@ class BookRepositoryTest {
 
     @Test
     void findByAuthor() {
-        Book bookFindByAuthor = bookRepository.save(new Book("Ekspert", "Bell", 10));
+        Book bookFindByAuthor = bookRepository.save(new Book(10L,"Ekspert", "Bell", 10));
         Optional<Book> foundBook = bookRepository.findByAuthor(bookFindByAuthor.getAuthor());
         assertTrue(foundBook.isPresent());
         assertEquals("Bell", bookFindByAuthor.getAuthor());
 
     }
+
+    @Test
+    void findByTitle(){
+        Book bookFindByTitle = bookRepository.save(new Book(11L,"Biegnąca z Wilkami", "Estes", 10));
+        Optional<Book >foundTitle = bookRepository.findByTitle(bookFindByTitle.getTitle());
+        assertTrue(foundTitle.isPresent());
+        assertEquals("Biegnąca z Wilkami", bookFindByTitle.getTitle());
+    }
+
 }
 
 

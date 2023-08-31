@@ -28,7 +28,7 @@ public class Book {
     @UpdateTimestamp
     private LocalDateTime updated;
 
-    public Book(String title, String author, int amount) {
+    public Book(Long id, String title, String author, int amount) {
         this.title = title;
         this.author = author;
         this.amount = amount;

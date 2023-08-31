@@ -1,6 +1,7 @@
 package pl.com.coders.libria1.controller;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class BookView {
     private Long id;
@@ -23,6 +24,10 @@ public class BookView {
     }
 
     public BookView() {
+    }
+
+    public BookView(Long id, String title, String author, int amount) {
+        this(id, title, author, amount, LocalDateTime.now(), LocalDateTime.now());
     }
 
     public CategoryName getCategoryName() {
@@ -80,4 +85,27 @@ public class BookView {
     public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BookView bookView = (BookView) o;
+        return amount == bookView.amount
+                && Objects.equals(id, bookView.id)
+                && categoryName == bookView.categoryName
+                && Objects.equals(title, bookView.title)
+                && Objects.equals(author, bookView.author)
+                && Objects.equals(created, bookView.created)
+                && Objects.equals(updated, bookView.updated);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, categoryName, title, author, amount, created, updated);
+    }
+
+    public Object thenReturn(BookView book) { return  book;
+    }
 }
+
