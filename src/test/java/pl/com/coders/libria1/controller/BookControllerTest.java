@@ -60,24 +60,44 @@ class BookControllerTest {
     void create() throws Exception {
         BookView book = new BookView(1L, "W pustyni i w puszczy", "Sienkiewicz", 10);
         when(bookService.create(new BookCreateRequest())).thenReturn(book);
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(new BookCreateRequest());
+
+        String json = objectMapper.writeValueAsString(new BookCreateRequest());
         MvcResult result = mockMVc.perform(MockMvcRequestBuilders.post("/book")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
                 )
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
 
-        MockHttpServletResponse response = result.getResponse();
-        response.getContentAsString();
+        json = result.getResponse().getContentAsString();
+        BookView bookFromRequest = objectMapper.readValue(json, BookView.class);
+        assertEquals(book, bookFromRequest);
     }
 
     @Test
-    void delete() {
+    void delete() throws Exception {
+        mockMVc.perform(MockMvcRequestBuilders.delete("/book/1"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andReturn();
     }
 
     @Test
-    void update() {
+    void update() throws Exception {
+        BookView book = new BookView(1L, "W pustyni i w puszczy", "Sienkiewicz", 10);
+        when(bookService.update(1L,new BookCreateRequest())).thenReturn(book);
+        String json = objectMapper.writeValueAsString(new BookCreateRequest());
+        MvcResult result = mockMVc.perform(MockMvcRequestBuilders.put("/book/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json)
+                )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andReturn();
+
+        json = result.getResponse().getContentAsString();
+        BookView bookFromRequest = objectMapper.readValue(json, BookView.class);
+        assertEquals(book, bookFromRequest);
     }
 }
