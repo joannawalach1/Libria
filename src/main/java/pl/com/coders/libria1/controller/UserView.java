@@ -1,6 +1,7 @@
 package pl.com.coders.libria1.controller;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class UserView {
     private Long id;
@@ -56,4 +57,21 @@ public class UserView {
         this.updated = updated;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserView userView = (UserView) o;
+        return Objects.equals(id, userView.id)
+                && Objects.equals(login, userView.login)
+                && Objects.equals(password, userView.password)
+                && Objects.equals(email, userView.email)
+                && Objects.equals(created, userView.created)
+                && Objects.equals(updated, userView.updated);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, password, email, created, updated);
+    }
 }
