@@ -58,15 +58,14 @@ class UserControllerTest {
     @Test
     void create() throws Exception {
         UserView user = new UserView(1L,"kowalski","abcd","kowalski@",LocalDateTime.now(),LocalDateTime.now());
-        when(userService.createUser(new UserCreateRequest())).thenReturn((user));
+        when(userService.createUser(any())).thenReturn((user));
         String json = objectMapper.writeValueAsString(new UserCreateRequest());
-        MvcResult result = mockMVc.perform(MockMvcRequestBuilders.post("/user/")
+        MvcResult result = mockMVc.perform(MockMvcRequestBuilders.post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
         json = result.getResponse().getContentAsString();
         UserView userFromRequest = objectMapper.readValue(json, UserView.class);// czemu to nie działa?

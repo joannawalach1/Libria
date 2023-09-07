@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.com.coders.libria1.controller.request.UserCreateRequest;
 import pl.com.coders.libria1.service.UserService;
-@ResponseBody
 @RestController
 @RequestMapping("/user")
 public class UserController {
