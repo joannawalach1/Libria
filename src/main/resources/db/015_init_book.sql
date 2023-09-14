@@ -1,0 +1,10 @@
+insert into book(id,title, author, amount, category_id) values(1, 'Wuthering heights', 'Bronte', 20,  3 );
+insert into book(id,title, author, amount, category_id) values(2, 'Romeo and Juilet', 'Szekspir', 3, 2 );
+insert into book(id,title, author, amount, category_id) values(3, 'Pan Tadeusz', 'Mickiewicz', 5, 2);
+insert into book(id,title, author, amount, category_id) values(4, 'Chłopi', 'Reymont', 8, 2);
+insert into book(id,title, author, amount, category_id) values(5, 'Lalka', 'Prus', 2, 2);
+insert into book(id,title, author, amount, category_id) values(6, 'Potop', 'Sienkiewicz', 4, 2);
+insert into book(id,title, author, amount, category_id) values(7, 'Krzyzacy', 'Sienkiewicz', 4, 2);
+insert into book(id,title, author, amount, category_id) values(8, 'Pan Wołodyjowski', 'Sienkiewicz', 4, 2);
+insert into book(id,title, author, amount, category_id) values(9, 'Ogniem i mieczem', 'Sienkiewicz', 4, 2);
+insert into book(id,title, author, amount, category_id) values(10,'Doktor Judym', 'Żeromski', 4, 2);

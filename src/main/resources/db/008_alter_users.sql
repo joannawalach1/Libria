@@ -1,0 +1,1 @@
+alter table if exists users add constraint UK_ow0gan20590jrb00upg3va2fn unique (login)

@@ -1,0 +1,1 @@
+create table lend (id  bigserial not null, lend_date timestamp, user_id int8 not null, primary key (id))

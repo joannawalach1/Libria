@@ -3,9 +3,9 @@ package pl.com.coders.libria1.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import pl.com.coders.libria1.controller.BookCreateRequest;
-import pl.com.coders.libria1.controller.BookView;
-import pl.com.coders.libria1.controller.CategoryName;
+import pl.com.coders.libria1.controller.view.BookCreateRequest;
+import pl.com.coders.libria1.controller.view.BookView;
+import pl.com.coders.libria1.controller.view.CategoryName;
 import pl.com.coders.libria1.domain.Book;
 import pl.com.coders.libria1.domain.Category;
 

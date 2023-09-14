@@ -1,1 +1,0 @@
- alter table if exists book add constraint UK_g0286ag1dlt4473st1ugemd0m unique (title)

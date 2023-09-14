@@ -1,4 +1,4 @@
-package pl.com.coders.libria1.controller;
+package pl.com.coders.libria1.controller.view;
 
 public enum CategoryName {
     THRILLER(1), SCIENCE_FICTION(2), FANTASY(3), HORROR(4), ROMANS(5), DOCUMENT(6);

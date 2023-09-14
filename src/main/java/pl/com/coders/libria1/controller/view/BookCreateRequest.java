@@ -1,4 +1,4 @@
-package pl.com.coders.libria1.controller;
+package pl.com.coders.libria1.controller.view;
 
 import java.util.Objects;
 

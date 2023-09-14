@@ -1,0 +1,1 @@
+alter table if exists book_lend add constraint FKoojqg6h82bclughpyv1s35kss foreign key (book_id) references book

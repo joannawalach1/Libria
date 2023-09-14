@@ -38,6 +38,9 @@ public class Book {
     public Book() {
     }
 
+    public Book(String bookTitle, String categoryName, String rowling, int amount) {
+    }
+
     public Category getCategory() {
         return category;
     }

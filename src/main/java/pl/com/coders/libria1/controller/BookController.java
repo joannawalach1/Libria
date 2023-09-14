@@ -1,6 +1,8 @@
 package pl.com.coders.libria1.controller;
 
 import org.springframework.web.bind.annotation.*;
+import pl.com.coders.libria1.controller.view.BookCreateRequest;
+import pl.com.coders.libria1.controller.view.BookView;
 import pl.com.coders.libria1.service.BookService;
 
 @RestController

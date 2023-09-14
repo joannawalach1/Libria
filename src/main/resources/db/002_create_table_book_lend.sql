@@ -1,0 +1,1 @@
+create table book_lend (id  bigserial not null, amount int4 not null, borrow_date timestamp, return_date timestamp, book_id int8, lend_id int8 not null, primary key (id))

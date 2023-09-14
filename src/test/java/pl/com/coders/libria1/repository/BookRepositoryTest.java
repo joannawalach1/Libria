@@ -1,6 +1,7 @@
 package pl.com.coders.libria1.repository;
 
 import org.assertj.core.util.Lists;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import pl.com.coders.libria1.controller.CategoryName;
+import pl.com.coders.libria1.controller.view.CategoryName;
 import pl.com.coders.libria1.domain.Book;
 import pl.com.coders.libria1.domain.Category;
 
@@ -22,22 +23,24 @@ import static org.junit.jupiter.api.Assertions.*;
 //TODO FIX ME
 @Disabled
 class BookRepositoryTest {
-
     @Autowired
     private BookRepository bookRepository;
-
     @Autowired
     private CategoryRepository categoryRepository;
-
     private Category category;
 
     @BeforeEach
     void setUp() {
-        Category save = categoryRepository.save(new Category(CategoryName.DOCUMENT.name()));
-        category = categoryRepository.findByName(CategoryName.DOCUMENT.name()).get();
+        category = categoryRepository.save(new Category(CategoryName.DOCUMENT.name()));
         bookRepository.save(new Book("Wiedzmin 1", category, "Sapkowwski", 10));
         bookRepository.save(new Book("Otchłań", category, "Scales", 15));
         bookRepository.save(new Book("Harry Potter", category, "Rowling", 5));
+    }
+
+    @AfterEach
+    void tearDown() {
+        bookRepository.deleteAll();
+        categoryRepository.deleteAll();
     }
 
     @Test
@@ -47,7 +50,6 @@ class BookRepositoryTest {
         assertEquals("Tkając Świt", book.getTitle());
         assertEquals("Kim", book.getAuthor());
         assertEquals(10, book.getAmount());
-
     }
 
     @Test
@@ -59,10 +61,9 @@ class BookRepositoryTest {
     }
 
     @Test
-    void findByID() {
-        Book book = bookRepository.findByTitle("Wiedzmin 1").get();
-        Optional<Book> book1 = bookRepository.findById(book.getId());
-        assertTrue(book1.isPresent());
+    void testCreate() {
+        Book sapkowski = bookRepository.save(new Book("Wiedźmin 1", category, "Sapkowski", 10));
+        bookRepository.findAll();
     }
 
     @Test
@@ -75,7 +76,6 @@ class BookRepositoryTest {
 
     @Test
     void findAll() {
-
         List<Book> books = Lists.newArrayList(bookRepository.findAll());
         assertEquals(3, books.size());
     }
@@ -87,17 +87,17 @@ class BookRepositoryTest {
     }
 
     @Test
-    void deleteByID() {
-        Book book = bookRepository.findByTitle("Wiedzmin 1").get();
-        bookRepository.deleteById(book.getId());
-        assertEquals(2, bookRepository.count());
-    }
-
-    @Test
     void deleteAll() {
         Book book = bookRepository.save(new Book("Kwiaty Zielone", category, "Daniel", 10));
         bookRepository.deleteAll();
         assertEquals(0, bookRepository.count());
+    }
+
+    @Test
+    void deleteByTitle() {
+        Book book = bookRepository.save(new Book("Kwiaty Zielone", category, "Daniel", 10));
+        bookRepository.deleteByTitle(book.getTitle());
+        assertEquals(3, bookRepository.count());
     }
 
     @Test
@@ -128,6 +128,7 @@ class BookRepositoryTest {
         assertEquals("Biegnąca z Wilkami", bookFindByTitle.getTitle());
     }
 }
+
 
 
 

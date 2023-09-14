@@ -5,6 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "USERS")
 public class User {
@@ -16,20 +17,27 @@ public class User {
     private String password;
     @Column(unique = true)
     private String email;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Lend> lends;
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp
     private LocalDateTime updated;
 
-    public User(String name, String password, String email, LocalDateTime created, LocalDateTime updated) {
-        this.login = name;
+    public User(Long id, String login, String password, String email, List<Lend> lends, LocalDateTime created, LocalDateTime updated) {
+        this.id = id;
+        this.login = login;
         this.password = password;
         this.email = email;
+        this.lends = lends;
         this.created = created;
         this.updated = updated;
     }
 
     public User() {
+    }
+
+    public User(String login, String password, String mail) {
     }
 
     public Long getId() {
@@ -62,6 +70,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Lend> getLends() {
+        return lends;
+    }
+
+    public void setLends(List<Lend> lends) {
+        this.lends = lends;
     }
 
     public LocalDateTime getCreated() {
