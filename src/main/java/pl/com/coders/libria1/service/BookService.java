@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import pl.com.coders.libria1.controller.BookCreateRequest;
 import pl.com.coders.libria1.controller.BookView;
 import pl.com.coders.libria1.domain.Book;
+import pl.com.coders.libria1.domain.Category;
 import pl.com.coders.libria1.mapper.BookMapper;
 import pl.com.coders.libria1.repository.BookRepository;
+import pl.com.coders.libria1.repository.CategoryRepository;
 
 import java.util.Optional;
 
@@ -19,6 +21,9 @@ public class BookService {
     @Autowired
     private BookMapper bookMapper;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     public BookView get(Long id) {
         Optional<Book> bookOpt = bookRepository.findById(id);
         Book book = bookOpt.orElseThrow(() -> new IllegalArgumentException("Book not exist with id : " + id));
@@ -28,7 +33,8 @@ public class BookService {
 
     public BookView create(BookCreateRequest bookCreateRequest) {
         Book book = bookMapper.toEntity(bookCreateRequest);
-
+        Category category = categoryRepository.findByName(book.getCategory().getName()).get();
+        book.setCategory(category);
         return bookMapper.toView(bookRepository.save(book));
     }
 
