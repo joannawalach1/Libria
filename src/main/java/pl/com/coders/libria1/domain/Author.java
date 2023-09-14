@@ -5,30 +5,27 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Set;
 
-@Entity(name = "CATEGORY")
-public class Category {
+@Entity(name = "AUTHOR")
+public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy="category", cascade = CascadeType.ALL)
-    private Set<Book> items;
-
-    private String name;
+    private String firstName;
+    private String lastName;
 
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp
     private LocalDateTime updated;
 
-    public Category() {
+    public Author(String firstName, String lastName){
+        this.firstName =firstName;
+        this.lastName =lastName;
     }
-
-    public Category(String name) {
-        this.name = name;
+    public Author(){
     }
 
     public Long getId() {
@@ -39,20 +36,20 @@ public class Category {
         this.id = id;
     }
 
-    public Set<Book> getItems() {
-        return items;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setItems(Set<Book> items) {
-        this.items = items;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getName() {
-        return name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public LocalDateTime getCreated() {
@@ -70,4 +67,10 @@ public class Category {
     public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
     }
+
+
+    public Author orElseThrow(Object o) {
+        return null;
+    }
+
 }
