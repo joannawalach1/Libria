@@ -7,8 +7,8 @@ import pl.com.coders.libria1.domain.Author;
 @Repository
 public interface AuthorRepository extends CrudRepository<Author, Long> {
 
-    Author getbyLastName(String lastName);
+    Author getByLastName(String lastName);
 
-    void delete(String lastName);
+    void deleteByLastName(String lastName);
 
 }

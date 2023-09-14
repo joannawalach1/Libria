@@ -19,8 +19,8 @@ public class AuthorService {
     @Autowired
     private AuthorMapper authorMapper;
 
-    public AuthorView getbyLastName(String lastName) {
-        Optional<Author> authorOptional = Optional.ofNullable(authorRepository.getbyLastName(lastName));
+    public AuthorView getByLastName(String lastName) {
+        Optional<Author> authorOptional = Optional.ofNullable(authorRepository.getByLastName(lastName));
         if(authorOptional.isPresent()){
             Author author =authorOptional.get();
             return authorMapper.toAuthorView(author);
@@ -35,12 +35,12 @@ public class AuthorService {
 
     }
 
-    public void delete(String lastName) {authorRepository.delete(lastName);
-
+    public void delete(String lastName) {
+        authorRepository.deleteByLastName(lastName);
     }
 
     public AuthorView update(AuthorView authorView) {
-        Author existingAuthor = authorRepository.getbyLastName(authorView.getLastName().describeConstable().orElseThrow());
+        Author existingAuthor = authorRepository.getByLastName(authorView.getLastName().describeConstable().orElseThrow());
         existingAuthor.setLastName(authorView.getLastName());
         existingAuthor.setFirstName(authorView.getFirstName());
         return authorMapper.toAuthorView(authorRepository.save(existingAuthor));

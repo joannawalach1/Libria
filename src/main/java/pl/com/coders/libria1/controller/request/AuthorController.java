@@ -10,16 +10,15 @@ import pl.com.coders.libria1.service.AuthorService;
 public class AuthorController {
 
     @Autowired
-    private AuthorService authorService;
+    private final AuthorService authorService;
 
     public AuthorController(AuthorService authorService) {
         this.authorService = authorService;
     }
 
-
     @GetMapping("/{lastName}")
     public AuthorView getByLastName(@PathVariable String lastName) {
-        return authorService.getbyLastName(lastName);
+        return authorService.getByLastName(lastName);
     }
 
     @PostMapping
