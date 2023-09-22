@@ -13,12 +13,13 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="category_id", nullable=false)
     private Category category;
 
     @Column(unique = true)
     private String title;
+
     private String author;
 
     private int amount;

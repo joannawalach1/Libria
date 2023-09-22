@@ -1,41 +1,33 @@
 package pl.com.coders.libria1.controller.view;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class BookView {
     private Long id;
-    private CategoryName categoryName;
 
     private String title;
     private String author;
     private int amount;
+    private BigDecimal price;
+    private String description;
 
     private LocalDateTime created;
     private LocalDateTime updated;
 
-    public BookView(Long id, String title, String author, int amount, LocalDateTime created, LocalDateTime updated) {
+    public BookView() {
+    }
+
+    public BookView(Long id, String title, String author, int amount, BigDecimal price, String description) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.amount = amount;
-        this.created = created;
-        this.updated = updated;
-    }
-
-    public BookView() {
-    }
-
-    public BookView(Long id, String title, String author, int amount) {
-        this(id, title, author, amount, LocalDateTime.now(), LocalDateTime.now());
-    }
-
-    public CategoryName getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(CategoryName categoryName) {
-        this.categoryName = categoryName;
+        this.created = LocalDateTime.now();
+        this.updated = LocalDateTime.now();
+        this.price = price;
+        this.description = description;
     }
 
     public Long getId() {
@@ -86,6 +78,14 @@ public class BookView {
         this.updated = updated;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,7 +93,6 @@ public class BookView {
         BookView bookView = (BookView) o;
         return amount == bookView.amount
                 && Objects.equals(id, bookView.id)
-                && categoryName == bookView.categoryName
                 && Objects.equals(title, bookView.title)
                 && Objects.equals(author, bookView.author)
                 && Objects.equals(created, bookView.created)
@@ -102,10 +101,18 @@ public class BookView {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, categoryName, title, author, amount, created, updated);
+        return Objects.hash(id, title, author, amount, created, updated);
     }
 
     public Object thenReturn(BookView book) { return  book;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 

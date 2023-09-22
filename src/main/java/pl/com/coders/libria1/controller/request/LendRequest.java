@@ -10,8 +10,6 @@ public class LendRequest {
 
     private String username;
     private List<BookLendView> bookLendViews;
-    private LocalDateTime borrowDate;
-    private LocalDateTime returnDate;
 
     public LendRequest(String userName, List<BookLendView> bookLendViews) {
         this.username = userName;
@@ -39,19 +37,4 @@ public class LendRequest {
         this.bookLendViews = bookLendViews;
     }
 
-    public LocalDateTime getBorrowDate() {
-        return borrowDate;
-    }
-
-    public void setBorrowDate(LocalDateTime borrowDate) {
-        this.borrowDate = borrowDate;
-    }
-
-    public LocalDateTime getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(LocalDateTime returnDate) {
-        this.returnDate = returnDate;
-    }
 }

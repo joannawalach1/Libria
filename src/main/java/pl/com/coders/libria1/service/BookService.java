@@ -6,12 +6,16 @@ import pl.com.coders.libria1.controller.view.BookCreateRequest;
 import pl.com.coders.libria1.controller.view.BookView;
 import pl.com.coders.libria1.domain.Book;
 import pl.com.coders.libria1.domain.Category;
+import pl.com.coders.libria1.exception.BookNotExistException;
 import pl.com.coders.libria1.mapper.BookMapper;
+import pl.com.coders.libria1.mapper.CategoryMapper;
 import pl.com.coders.libria1.repository.AuthorRepository;
 import pl.com.coders.libria1.repository.BookRepository;
 import pl.com.coders.libria1.repository.CategoryRepository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -28,9 +32,18 @@ public class BookService {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    public BookView get(Long id) {
-        Optional<Book> bookOpt = bookRepository.findById(id);
-        Book book = bookOpt.orElseThrow(() -> new IllegalArgumentException("Book not exist with id : " + id));
+    @Autowired
+    private CategoryMapper categoryMapper;
+
+    public List<BookView> getByCategory(String category) {
+        return bookRepository.findByCategory(categoryRepository.findByName(category).get()).stream()
+                .map(book -> bookMapper.toView(book))
+                .collect(Collectors.toList());
+    }
+
+    public BookView getByTitle(String title) {
+        Optional<Book> bookOpt = bookRepository.findByTitle(title);
+        Book book = bookOpt.orElseThrow(() -> new BookNotExistException(title));
 
         return bookMapper.toView(book);
     }

@@ -21,6 +21,7 @@ import pl.com.coders.libria1.controller.view.BookView;
 import pl.com.coders.libria1.repository.BookRepository;
 import pl.com.coders.libria1.service.BookService;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,8 +54,8 @@ class BookControllerTest {
     @Test
     void get() throws Exception {
         AuthorView author =new AuthorView(1L, "Henryk", "Sienkiewicz", LocalDateTime.now(),LocalDateTime.now());
-        BookView book = new BookView(1L, "W pustyni i w puszczy", author.getLastName(), 10);
-        when(bookService.get(1L)).thenReturn(book);
+        BookView book = new BookView(1L, "W pustyni i w puszczy", author.getLastName(), 10, BigDecimal.TEN,"" );
+        when(bookService.getByTitle("W pustyni i w puszczy")).thenReturn(book);
         MvcResult result = mockMVc.perform(MockMvcRequestBuilders.get("/book/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -68,7 +69,7 @@ class BookControllerTest {
     @Test
     void create() throws Exception {
         AuthorView author =new AuthorView(1L, "Henryk", "Sienkiewicz", LocalDateTime.now(),LocalDateTime.now());
-        BookView book = new BookView(1L, "W pustyni i w puszczy",author.getLastName(), 10);
+        BookView book = new BookView(1L, "W pustyni i w puszczy",author.getLastName(), 10, BigDecimal.TEN,"" );
         when(bookService.create(new BookCreateRequest())).thenReturn(book);
 
         String json = objectMapper.writeValueAsString(new BookCreateRequest());
@@ -96,7 +97,7 @@ class BookControllerTest {
     @Test
     void update() throws Exception {
         AuthorView author =new AuthorView(1L, "Henryk", "Sienkiewicz", LocalDateTime.now(),LocalDateTime.now());
-        BookView book = new BookView(1L, "W pustyni i w puszczy",author.getLastName(), 10);
+        BookView book = new BookView(1L, "W pustyni i w puszczy",author.getLastName(), 10, BigDecimal.TEN,"" );
         when(bookService.update(1L,new BookCreateRequest())).thenReturn(book);
         String json = objectMapper.writeValueAsString(new BookCreateRequest());
         MvcResult result = mockMVc.perform(MockMvcRequestBuilders.put("/book/1")

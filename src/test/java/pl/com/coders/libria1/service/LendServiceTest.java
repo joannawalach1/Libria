@@ -17,6 +17,7 @@ import pl.com.coders.libria1.repository.UserRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,30 +47,31 @@ class LendServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-//    @Test
-//    void lendBook() {
-//        User user = userRepository.save(new User("Piotr", "pass1", "user1@op.pl"));
-//
-//        String bookTitle = "Test Book";
-//        int amount = 1;
-//        LocalDateTime borrowDate = LocalDateTime.now();
-//        LocalDateTime returnDate = LocalDateTime.now();
-//        String categoryName = CategoryName.FANTASY.name();
-//
-//        Book mockBook = new Book(bookTitle, categoryName, "Rowling", 5);
-//        when(bookRepository.findByTitle(bookTitle)).thenReturn(Optional.of(mockBook));
-//
-//        List<Lend> lends = Lists.newArrayList(new Lend(user, new ArrayList<>()));
-//
-//        LendRequest lendRequest = new LendRequest();
-//
-//        when(lendRepository.findByUser(user)).thenReturn(lends);
-//
-//        Lend result = lendService.lendBook(lendRequest);
-//
-//        assertNotNull(result);
-//        assertEquals(user, result.getUser());
-//    }
+    @Test
+    void lendBook() {
+        User user = userRepository.save(new User("Piotr", "pass1", "user1@op.pl"));
+
+        String bookTitle = "Test Book";
+        int amount = 1;
+        LocalDateTime borrowDate = LocalDateTime.now();
+        LocalDateTime returnDate = LocalDateTime.now();
+        String categoryName = CategoryName.FANTASY.name();
+
+        Book mockBook = new Book(bookTitle, categoryName, "Rowling", 5);
+        when(bookRepository.findByTitle(bookTitle)).thenReturn(Optional.of(mockBook));
+
+        List<Lend> lends = Lists.newArrayList(new Lend(user, new ArrayList<>()));
+
+        LendRequest lendRequest = new LendRequest();
+        lendRequest.setBookLendViews(Arrays.asList());
+
+        when(lendRepository.findByUser(user)).thenReturn(lends);
+
+        Lend result = lendService.lendBook(lendRequest);
+
+        assertNotNull(result);
+        assertEquals(user, result.getUser());
+    }
 
     @Test
     void returnBook() {

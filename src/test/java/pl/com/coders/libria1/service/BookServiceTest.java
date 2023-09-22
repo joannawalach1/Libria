@@ -14,6 +14,7 @@ import pl.com.coders.libria1.mapper.BookMapper;
 import pl.com.coders.libria1.repository.BookRepository;
 import pl.com.coders.libria1.repository.CategoryRepository;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -44,8 +45,8 @@ class BookServiceTest {
     void get() {
         Long id = 1L;
         when(bookRepository.findById(any())).thenReturn(Optional.of(new Book()));
-        when(bookMapper.toView(any())).thenReturn(new BookView(12L, "Afryka,", "Pascal", 5));
-        BookView bookView = bookService.get(12L);
+        when(bookMapper.toView(any())).thenReturn(new BookView(12L, "Afryka,", "Pascal", 5, BigDecimal.TEN, ""));
+        BookView bookView = bookService.getByTitle("Afryka,");
         assertNotNull(bookView);
     }
 
@@ -55,7 +56,7 @@ class BookServiceTest {
         Book book = new Book("Ameryka", new Category(CategoryName.DOCUMENT.name()), "Pascal", 5);
         when(bookMapper.toEntity(bookCreateRequest)).thenReturn(book);
         when(bookRepository.save(any())).thenReturn(book);
-        when(bookMapper.toView(any())).thenReturn(new BookView(13L, "Ameryka", "Pascal", 5));
+        when(bookMapper.toView(any())).thenReturn(new BookView(13L, "Ameryka", "Pascal", 5, BigDecimal.TEN, ""));
         when(categoryRepository.findByName(any())).thenReturn(Optional.of(new Category()));
 
         BookView bookView = bookService.create(bookCreateRequest);

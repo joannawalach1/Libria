@@ -12,7 +12,6 @@ import pl.com.coders.libria1.domain.Category;
 @Mapper(componentModel = "spring")
 public interface BookMapper {
 
-    @Mapping(source = "category.name", target = "categoryName")
     BookView toView(Book book);
 
     Book toEntity(BookView view);

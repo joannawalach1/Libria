@@ -10,6 +10,7 @@ import pl.com.coders.libria1.service.LendService;
 
 @RestController
 @RequestMapping("/lend")
+//FIXME create mapper
 public class LendController {
 
     @Autowired
