@@ -12,6 +12,7 @@ import pl.com.coders.libria1.domain.Book;
 import pl.com.coders.libria1.domain.Category;
 import pl.com.coders.libria1.mapper.BookMapper;
 import pl.com.coders.libria1.repository.BookRepository;
+import pl.com.coders.libria1.repository.CategoryRepository;
 
 import java.util.Optional;
 
@@ -27,6 +28,9 @@ class BookServiceTest {
 
     @Mock
     private BookMapper bookMapper;
+
+    @Mock
+    private CategoryRepository categoryRepository;
 
     @InjectMocks
     private BookService bookService;
@@ -52,6 +56,7 @@ class BookServiceTest {
         when(bookMapper.toEntity(bookCreateRequest)).thenReturn(book);
         when(bookRepository.save(any())).thenReturn(book);
         when(bookMapper.toView(any())).thenReturn(new BookView(13L, "Ameryka", "Pascal", 5));
+        when(categoryRepository.findByName(any())).thenReturn(Optional.of(new Category()));
 
         BookView bookView = bookService.create(bookCreateRequest);
         assertThat(bookView).isNotNull();

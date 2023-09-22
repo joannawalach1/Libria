@@ -7,6 +7,7 @@ import pl.com.coders.libria1.controller.view.BookView;
 import pl.com.coders.libria1.domain.Book;
 import pl.com.coders.libria1.domain.Category;
 import pl.com.coders.libria1.mapper.BookMapper;
+import pl.com.coders.libria1.repository.AuthorRepository;
 import pl.com.coders.libria1.repository.BookRepository;
 import pl.com.coders.libria1.repository.CategoryRepository;
 
@@ -17,6 +18,9 @@ public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private AuthorRepository authorRepository;
 
     @Autowired
     private BookMapper bookMapper;
@@ -56,7 +60,6 @@ public class BookService {
             throw new IllegalArgumentException("Book not exist with id" + id);
         }
     }
-
 
 }
 

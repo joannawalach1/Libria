@@ -2,7 +2,7 @@ package pl.com.coders.libria1.controller.request;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.com.coders.libria1.controller.AuthorView;
+import pl.com.coders.libria1.controller.view.AuthorView;
 import pl.com.coders.libria1.service.AuthorService;
 
 @RestController

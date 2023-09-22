@@ -1,4 +1,4 @@
-package pl.com.coders.libria1.controller;
+package pl.com.coders.libria1.controller.view;
 
 
 import java.time.LocalDateTime;
@@ -19,6 +19,7 @@ public class AuthorView {
         this.created =created;
         this.updated = updated;
     }
+    public AuthorView(){}
 
     public Long getId() {return id;}
     public void setId(Long id) {this.id = id;}
@@ -31,4 +32,16 @@ public class AuthorView {
     public LocalDateTime getUpdated() {return updated;}
     public void setUpdated(LocalDateTime updated) {this.updated = updated;}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AuthorView that = (AuthorView) o;
+        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(created, that.created) && Objects.equals(updated, that.updated);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, created, updated);
+    }
 }

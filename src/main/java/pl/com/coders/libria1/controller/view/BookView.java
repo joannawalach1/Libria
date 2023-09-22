@@ -50,6 +50,10 @@ public class BookView {
         return author;
     }
 
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public int getAmount() {
         return amount;
     }
@@ -68,10 +72,6 @@ public class BookView {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public void setAmount(int amount) {

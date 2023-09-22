@@ -9,15 +9,15 @@ public class BookCreateRequest {
     private int amount;
     private CategoryName categoryName;
 
-    public BookCreateRequest(Long id,String title, String author, int amount,CategoryName categoryName){
+    public BookCreateRequest(Long id, String title, String author, int amount, CategoryName categoryName) {
         this.title = title;
         this.author = author;
         this.amount = amount;
-        this.categoryName =categoryName;
-
+        this.categoryName = categoryName;
     }
 
-    public BookCreateRequest(){}
+    public BookCreateRequest() {
+    }
 
     public BookCreateRequest(Long id, String title, String author, int amount) {
     }
@@ -34,9 +34,6 @@ public class BookCreateRequest {
         return title;
     }
 
-    public String getAuthor() {
-        return author;
-    }
 
     public int getAmount() {
         return amount;
@@ -46,12 +43,16 @@ public class BookCreateRequest {
         this.title = title;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     @Override
@@ -66,4 +67,5 @@ public class BookCreateRequest {
     public int hashCode() {
         return Objects.hash(title, author, amount, categoryName);
     }
+
 }

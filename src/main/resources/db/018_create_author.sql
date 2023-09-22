@@ -1,6 +1,6 @@
 CREATE TABLE author (
     id bigserial not null,
-    firstName VARCHAR(64),
-    lastName VARCHAR(64),
+    first_name VARCHAR(64),
+    last_name VARCHAR(64),
     primary key (id)
 );

@@ -28,9 +28,3 @@ insert into BOOK(id,title,author,amount,category_id)
 insert into BOOK(id,title,author,amount,category_id)
         values(20,'Zygzak','Somoza',10,4);
 
-
-
-
-
-
-

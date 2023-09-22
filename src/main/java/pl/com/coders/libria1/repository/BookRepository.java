@@ -2,6 +2,7 @@ package pl.com.coders.libria1.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import pl.com.coders.libria1.domain.Book;
 
 import java.util.Optional;
@@ -11,6 +12,8 @@ public interface BookRepository  extends CrudRepository<Book, Long> {
     Optional<Book> findByAuthor(String author);
     Optional<Book> findByTitle(String title);
 
+
+    @Transactional
     void deleteByTitle(String title);
 }
 

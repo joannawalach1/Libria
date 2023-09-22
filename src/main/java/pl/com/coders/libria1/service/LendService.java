@@ -62,7 +62,7 @@ public class LendService {
     public Lend returnBook(ReturnRequest returnRequest) {
 
         Lend lend = lendRepository.findById(returnRequest.getLendId())
-                .orElseThrow(() -> new IllegalArgumentException("lend exist with id" + returnRequest.getLendId()));
+                .orElseThrow(() -> new IllegalArgumentException("lend not exist with id " + returnRequest.getLendId()));
 
         lend.setReturnDate(LocalDateTime.now());
         lend.setStatus(LendStatus.RETURNED);

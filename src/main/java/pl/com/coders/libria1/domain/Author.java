@@ -28,6 +28,10 @@ public class Author {
     public Author(){
     }
 
+    public Author(long l) {
+
+    }
+
     public Long getId() {
         return id;
     }
