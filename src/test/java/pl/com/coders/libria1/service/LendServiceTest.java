@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import pl.com.coders.libria1.controller.request.LendRequest;
 import pl.com.coders.libria1.controller.request.ReturnRequest;
 import pl.com.coders.libria1.controller.view.CategoryName;
 import pl.com.coders.libria1.domain.*;
@@ -58,10 +59,13 @@ class LendServiceTest {
 //        Book mockBook = new Book(bookTitle, categoryName, "Rowling", 5);
 //        when(bookRepository.findByTitle(bookTitle)).thenReturn(Optional.of(mockBook));
 //
-//        Lend mockLend = new Lend(user, new ArrayList<>());
-////        when(lendRepository.findByUser(user)).thenReturn(mockLend);
-////
-////        Lend result = lendService.lendBook(user);
+//        List<Lend> lends = Lists.newArrayList(new Lend(user, new ArrayList<>()));
+//
+//        LendRequest lendRequest = new LendRequest();
+//
+//        when(lendRepository.findByUser(user)).thenReturn(lends);
+//
+//        Lend result = lendService.lendBook(lendRequest);
 //
 //        assertNotNull(result);
 //        assertEquals(user, result.getUser());
@@ -88,12 +92,12 @@ class LendServiceTest {
         mockBookLend.setAmount(2);
         mockBookLend.setBorrowDate(borrowDate);
         bookLends.add(mockBookLend);
-       // mockBookLend.setBookLends(bookLends);
+        // mockBookLend.setBookLends(bookLends);
 
         when(bookLendRepository.save(any())).thenReturn(mockBookLend);
         ReturnRequest returnRequest = new ReturnRequest();
         lendService.returnBook(returnRequest);
-       // assertEquals(1, mockLend.getBookLends().size());
+        // assertEquals(1, mockLend.getBookLends().size());
         assertEquals(2, mockBookLend.getAmount());
     }
 }

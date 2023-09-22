@@ -1,5 +1,7 @@
 package pl.com.coders.libria1.domain;
 
+import pl.com.coders.libria1.controller.BookLendView;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,6 +35,14 @@ public class Lend {
     public Lend() {
         this.status = LendStatus.LEND_IN_PROGRESS;
     }
+
+    public Lend(String login, List<BookLendView> viewList) {
+
+    }
+
+    public Lend(String login, boolean remove) {
+    }
+
 
     public LocalDateTime getLendDate() {
         return lendDate;

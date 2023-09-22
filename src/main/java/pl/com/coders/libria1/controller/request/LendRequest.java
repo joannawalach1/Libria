@@ -18,6 +18,11 @@ public class LendRequest {
         this.bookLendViews = bookLendViews;
     }
 
+    public LendRequest() {
+
+
+    }
+
     public String getUsername() {
         return username;
     }

@@ -20,6 +20,11 @@ public class UserView {
     }
     public UserView() {
     }
+
+    public UserView(String maja, String majowa, String s, LocalDateTime now, LocalDateTime now1) {
+    }
+
+
     public Long getId() {
         return id;
     }
