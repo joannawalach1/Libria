@@ -20,7 +20,9 @@ public class Book {
     @Column(unique = true)
     private String title;
 
-    private String author;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="author_id", nullable=false)
+    private Author author;
 
     private int amount;
 
@@ -29,7 +31,7 @@ public class Book {
     @UpdateTimestamp
     private LocalDateTime updated;
 
-    public Book(String title, Category category, String author, int amount) {
+    public Book(String title, Category category, Author author, int amount) {
         this.category = category;
         this.title = title;
         this.author = author;
@@ -58,7 +60,7 @@ public class Book {
         return title;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
@@ -82,7 +84,7 @@ public class Book {
         this.title = title;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 

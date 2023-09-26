@@ -1,5 +1,7 @@
 package pl.com.coders.libria1.controller.view;
 
+import pl.com.coders.libria1.domain.Author;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -8,7 +10,7 @@ public class BookView {
     private Long id;
 
     private String title;
-    private String author;
+    private Author author;
     private int amount;
     private BigDecimal price;
     private String description;
@@ -19,7 +21,7 @@ public class BookView {
     public BookView() {
     }
 
-    public BookView(Long id, String title, String author, int amount, BigDecimal price, String description) {
+    public BookView(Long id, String title, Author author, int amount, BigDecimal price, String description) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -38,11 +40,11 @@ public class BookView {
         return title;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 

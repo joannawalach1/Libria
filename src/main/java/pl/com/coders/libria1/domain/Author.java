@@ -5,6 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity(name = "AUTHOR")
 public class Author {
@@ -16,6 +17,9 @@ public class Author {
     private String firstName;
     private String lastName;
 
+    @OneToMany(mappedBy="author", cascade = CascadeType.ALL)
+    private Set<Book> items;
+
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp
@@ -26,10 +30,6 @@ public class Author {
         this.lastName =lastName;
     }
     public Author(){
-    }
-
-    public Author(long l) {
-
     }
 
     public Long getId() {
