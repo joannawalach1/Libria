@@ -5,6 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "AUTHOR")
@@ -18,7 +19,7 @@ public class Author {
     private String lastName;
 
     @OneToMany(mappedBy="author", cascade = CascadeType.ALL)
-    private Set<Book> items;
+    private List<Book> items;
 
     @CreationTimestamp
     private LocalDateTime created;
