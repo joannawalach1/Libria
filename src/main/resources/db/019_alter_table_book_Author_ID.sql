@@ -1,1 +1,6 @@
-alter table if exists book add constraint FKklnrv3weler2ftkweewlky958 foreign key (author_id) references author
+ALTER TABLE book
+ADD COLUMN author_id BIGINT;
+ALTER TABLE book
+ADD FOREIGN KEY (author_id) REFERENCES author(id);
+ALTER TABLE book
+DROP COLUMN author;

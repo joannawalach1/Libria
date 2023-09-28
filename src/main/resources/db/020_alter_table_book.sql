@@ -1,0 +1,3 @@
+ALTER TABLE book
+ADD COLUMN price BIGINT,
+ADD COLUMN description TEXT;

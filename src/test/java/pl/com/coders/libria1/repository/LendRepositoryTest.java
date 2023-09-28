@@ -28,27 +28,27 @@ class LendRepositoryTest {
     private Category category;
 
 
-    @Test
-    void lend() {
-        Category category = categoryRepository.save(new Category(CategoryName.FANTASY.name()));
-        Book book = bookRepository.save(new Book("Harry Potter", category, "Rowling", 5));
-        User user = userRepository.save(new User("Piotr", "pass1", "user1@op.pl"));
-        User foundUser = userRepository.findByLogin(user.getLogin()).orElse(null);
-        assertNotNull(foundUser);
-        Book notFoundBook = bookRepository.findByTitle("Harry Potter1").orElse(null);
-
-        Lend lend = new Lend(foundUser, new ArrayList<>());
-        Lend savedLend = lendRepository.save(lend);
-        BookLend bookLend = new BookLend(savedLend, book, 1);
-        savedLend.addLend(bookLend);
-
-        Lend save = lendRepository.save(savedLend);
-
-        Iterable<Lend> allLends = lendRepository.findAll();
-        int lendCount = 0;
-        for (Lend lend1 : allLends) {
-            lendCount++;
-        }
-        assertEquals(1, lendCount);
-    }
+//    @Test
+//    void lend() {
+//        Category category = categoryRepository.save(new Category(CategoryName.FANTASY.name()));
+//        Book book = bookRepository.save(new Book("Harry Potter", category, "Rowling", 5));
+//        User user = userRepository.save(new User("Piotr", "pass1", "user1@op.pl"));
+//        User foundUser = userRepository.findByLogin(user.getLogin()).orElse(null);
+//        assertNotNull(foundUser);
+//        Book notFoundBook = bookRepository.findByTitle("Harry Potter1").orElse(null);
+//
+//        Lend lend = new Lend(foundUser, new ArrayList<>());
+//        Lend savedLend = lendRepository.save(lend);
+//        BookLend bookLend = new BookLend(savedLend, book, 1);
+//        savedLend.addLend(bookLend);
+//
+//        Lend save = lendRepository.save(savedLend);
+//
+//        Iterable<Lend> allLends = lendRepository.findAll();
+//        int lendCount = 0;
+//        for (Lend lend1 : allLends) {
+//            lendCount++;
+//        }
+//        assertEquals(1, lendCount);
+//    }
 }

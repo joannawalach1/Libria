@@ -22,10 +22,6 @@ public class BookController {
     @GetMapping("/byCategory/{categoryName}")
     public List<BookView> getBooks(@PathVariable String categoryName) {
         List<BookView> byCategory = bookService.getByCategory(categoryName);
-        byCategory.forEach(cat -> {
-            cat.setDescription("Tu będznie niesamowity opis naszej książki, który do kliknięcia dalej");
-            cat.setPrice(BigDecimal.ONE);
-        });
         return byCategory;
     }
 
@@ -33,8 +29,7 @@ public class BookController {
     //FIXME PAaulina usunac po implementacjia price i description
     public BookView get(@PathVariable String title) {
         BookView bookView = bookService.getByTitle(title);
-        bookView.setDescription("Tu będznie niesamowity opis naszej książki, który do kliknięcia dalej");
-        bookView.setPrice(BigDecimal.ONE);
+
 
         return bookView;
     }
