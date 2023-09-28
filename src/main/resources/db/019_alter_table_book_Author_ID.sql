@@ -1,0 +1,1 @@
+alter table if exists book add constraint FKklnrv3weler2ftkweewlky958 foreign key (author_id) references author

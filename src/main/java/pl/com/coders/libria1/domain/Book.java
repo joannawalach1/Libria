@@ -4,6 +4,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity(name = "BOOK")
@@ -20,16 +21,31 @@ public class Book {
     @Column(unique = true)
     private String title;
 
-    private String author;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="author_id", nullable=false)
+    private Author author;
 
     private int amount;
+    private BigDecimal price;
+    private String description;
 
     @CreationTimestamp
     private LocalDateTime created;
     @UpdateTimestamp
     private LocalDateTime updated;
 
-    public Book(String title, Category category, String author, int amount) {
+
+    public Book(Long id, Category category, String title, Author author, int amount, BigDecimal price, String description) {
+        this.id = id;
+        this.category = category;
+        this.title = title;
+        this.author = author;
+        this.amount = amount;
+        this.price = price;
+        this.description = description;
+    }
+
+    public Book(String title, Category category, Author author, int amount) {
         this.category = category;
         this.title = title;
         this.author = author;
@@ -37,6 +53,23 @@ public class Book {
     }
 
     public Book() {
+    }
+
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Book(String bookTitle, String categoryName, String rowling, int amount) {
@@ -58,7 +91,7 @@ public class Book {
         return title;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
@@ -82,7 +115,7 @@ public class Book {
         this.title = title;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 

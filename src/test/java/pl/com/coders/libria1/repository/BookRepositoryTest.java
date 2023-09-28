@@ -59,7 +59,7 @@ class BookRepositoryTest {
 
     @Test
     void save() {
-        Book book = bookRepository.save(new Book("Tkając Świt", category, String.valueOf(new Author(2L)), 10));
+        Book book = bookRepository.save(new Book("Tkając Świt", category, String.valueOf(new Author(2L, items)), 10));
         assertEquals(4, bookRepository.count());
         assertEquals("Tkając Świt", book.getTitle());
         assertEquals(10, book.getAmount());
@@ -68,8 +68,8 @@ class BookRepositoryTest {
     @Test
     void saveAll() {
         bookRepository.saveAll(List.of(
-                new Book("Citadela", category, String.valueOf(new Author(1L)), 3),
-                new Book("Shantaram", category, String.valueOf(new Author(3L)), 5)));
+                new Book("Citadela", category, String.valueOf(new Author(1L, items)), 3),
+                new Book("Shantaram", category, String.valueOf(new Author(3L, items)), 5)));
         assertEquals(5, bookRepository.count());
     }
 
